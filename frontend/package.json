@@ -7,14 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write .",
-    "postinstall": "prisma generate"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "next": "15.4.6",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "@prisma/client": "^6.13.0"
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -26,7 +24,6 @@
     "eslint-config-next": "15.4.6",
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.6.2",
-    "prisma": "^6.13.0",
     "typescript": "^5"
   }
 }
