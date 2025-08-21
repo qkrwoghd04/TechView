@@ -12,9 +12,10 @@ export class AdminController {
 
     res.cookie('access_token', token, {
       httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'none',
       maxAge: 3600 * 1000,
+      domain: '.jaehong.link',
     });
 
     return res.send({ message: '로그인 성공' });
