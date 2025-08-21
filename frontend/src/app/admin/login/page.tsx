@@ -12,7 +12,7 @@ export default function Page() {
     e.preventDefault();
     try {
       const data = await adminLogin(password);
-      localStorage.setItem('admin_token', data.access_token); // JWT 저장
+      localStorage.setItem('admin_token', data.access_token);
       router.push('/admin/questions');
     } catch (err: any) {
       console.error(err);
