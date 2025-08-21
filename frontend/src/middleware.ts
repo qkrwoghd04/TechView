@@ -13,12 +13,12 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // admin 하위 페이지 보호
-  if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
-    if (!token) {
-      return NextResponse.redirect(new URL('/admin/login', request.url));
-    }
-  }
+  // // admin 하위 페이지 보호
+  // if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
+  //   if (!token) {
+  //     return NextResponse.redirect(new URL('/admin/login', request.url));
+  //   }
+  // }
 
   return NextResponse.next();
 }
