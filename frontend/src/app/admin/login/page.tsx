@@ -11,8 +11,7 @@ export default function Page() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const data = await adminLogin(password);
-      localStorage.setItem('admin_token', data.access_token);
+      await adminLogin(password);
       router.push('/admin/questions');
     } catch (err: any) {
       console.error(err);
