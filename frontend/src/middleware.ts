@@ -6,6 +6,8 @@ export function middleware(request: NextRequest) {
     request.cookies.get('access_token')?.value ||
     request.headers.get('Authorization')?.replace('Bearer ', '');
 
+  console.log(token);
+
   const { pathname } = request.nextUrl;
 
   // admin 하위 페이지 보호

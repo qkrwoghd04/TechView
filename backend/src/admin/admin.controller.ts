@@ -11,10 +11,10 @@ export class AdminController {
     const token = await this.adminService.validatePassword(password);
 
     res.cookie('access_token', token, {
-      httpOnly: true, // JS에서 접근 불가 → XSS 방어
-      secure: true, // HTTPS에서만 전송
-      sameSite: 'strict', // CSRF 방어 강화
-      maxAge: 3600 * 1000, // 1시간
+      httpOnly: true,
+      secure: false,
+      sameSite: 'none',
+      maxAge: 3600 * 1000,
     });
 
     return res.send({ message: '로그인 성공' });
