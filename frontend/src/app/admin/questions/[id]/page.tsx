@@ -1,11 +1,8 @@
 import { getQuestionById } from '@/lib/api/questions';
 
-type Props = {
-  params: { id: string };
-};
-
-export default async function Page({ params }: Props) {
-  const question = await getQuestionById(params.id);
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const question = await getQuestionById(id);
 
   return (
     <div style={{ maxWidth: '720px', margin: '0 auto', padding: '2rem' }}>

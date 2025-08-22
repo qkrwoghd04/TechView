@@ -1,3 +1,9 @@
+.item {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .card {
   border: 1px solid #ddd;
   padding: 1rem;

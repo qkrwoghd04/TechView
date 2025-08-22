@@ -2,8 +2,8 @@ import api from './client';
 import { CreateQuestionDto, UpdateQuestionDto } from '@/types/questions';
 
 // 전체 문제 가져오기
-export async function getQuestions() {
-  const res = await api.get('/questions');
+export async function getQuestions(page: number, limit: number) {
+  const res = await api.get('/questions', { params: { page, limit } });
   return res.data;
 }
 

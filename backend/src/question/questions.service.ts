@@ -12,13 +12,27 @@ export class QuestionsService {
   }
 
   // 전체 문제 가져오기(관리자)
-  async getQuestions(params?: {
-    skip?: number;
-    take?: number;
-    where?: Prisma.QuestionWhereInput;
-    orderBy?: Prisma.QuestionOrderByWithRelationInput;
-  }): Promise<Question[]> {
-    return this.prisma.question.findMany(params);
+  async getQuestions(
+    page: number = 1,
+    limit: number = 10,
+  ): Promise<{
+    data: Question[];
+    total: number;
+    page: number;
+    limit: number;
+  }> {
+    const skip = (page - 1) * limit;
+
+    const [data, total] = await this.prisma.$transaction([
+      this.prisma.question.findMany({
+        skip,
+        take: limit,
+        orderBy: { createdAt: 'desc' },
+      }),
+      this.prisma.question.count(),
+    ]);
+
+    return { data, total, page, limit };
   }
 
   // 특정 문제를 id로 조회(관리자)
