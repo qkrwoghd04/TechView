@@ -35,6 +35,40 @@ export class QuestionsService {
     return { data, total, page, limit };
   }
 
+  async searchQuestions(
+    q?: string,
+    category?: string,
+    page: number = 1,
+    limit: number = 10,
+  ) {
+    const skip = (page - 1) * limit;
+
+    const where: any = {
+      OR: [
+        { question: { contains: q, mode: 'insensitive' } },
+        { answer: { contains: q, mode: 'insensitive' } },
+        { category: { contains: q, mode: 'insensitive' } },
+        { tags: { hasSome: [q] } },
+      ],
+    };
+
+    if (category) {
+      where.AND = { category };
+    }
+
+    const [data, total] = await this.prisma.$transaction([
+      this.prisma.question.findMany({
+        where,
+        skip,
+        take: limit,
+        orderBy: { createdAt: 'desc' },
+      }),
+      this.prisma.question.count({ where }),
+    ]);
+
+    return { data, total, page, limit, category };
+  }
+
   // 특정 문제를 id로 조회(관리자)
   async getQuestionById(id: string): Promise<Question | null> {
     return this.prisma.question.findUnique({ where: { id } });

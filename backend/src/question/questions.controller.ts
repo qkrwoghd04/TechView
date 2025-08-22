@@ -13,7 +13,7 @@ import { QuestionsService } from './questions.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { PaginationDto } from './dto/pagination.dto';
+import { FilterQuestionDto } from './dto/filter-question.dto';
 
 @Controller('questions')
 export class QuestionsController {
@@ -28,8 +28,13 @@ export class QuestionsController {
   /** ✅ 전체 문제 가져오기 (관리용) */
   // @UseGuards(JwtAuthGuard)
   @Get()
-  async findAll(@Query() query: PaginationDto) {
-    return this.questionsService.getQuestions(query.page, query.limit);
+  async findAll(@Query() query: FilterQuestionDto) {
+    return this.questionsService.getQuestions(
+      query.q,
+      query.category,
+      query.page,
+      query.limit,
+    );
   }
 
   /** ✅ 특정 문제 (id로 조회) */
