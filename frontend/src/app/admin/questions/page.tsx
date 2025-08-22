@@ -1,15 +1,10 @@
-import { getQuestions } from '@/lib/api/questions';
-import QuestionList from './_components/QuestionList';
-import SearchBar from './_components/SearchBar';
+import QuestionsBrowser from './_components/QuestionsBrowser';
+import styles from './page.module.css';
 
-export default async function Page() {
-  // const { data, total, page, pageSize } = await getQuestions(1, 10);
-
+export default function Page() {
   return (
-    <div style={{ padding: '1rem' }}>
-      <h2 style={{ marginBottom: '1rem' }}>질문 목록</h2>
-      <SearchBar />
-      {/* <QuestionList questions={data} /> */}
+    <div className={styles.container}>
+      <QuestionsBrowser />
     </div>
   );
 }

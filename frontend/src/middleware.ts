@@ -6,19 +6,19 @@ export function middleware(request: NextRequest) {
 
   const { pathname, searchParams } = request.nextUrl;
 
-  // if (process.env.NODE_ENV === 'development') {
-  //   const bypass = searchParams.get('bypass');
-  //   if (bypass === '123') {
-  //     return NextResponse.next();
-  //   }
-  // }
-
-  // admin 하위 페이지 보호
-  if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
-    if (!token) {
-      return NextResponse.redirect(new URL('/admin/login', request.url));
+  if (process.env.NODE_ENV === 'development') {
+    const bypass = searchParams.get('bypass');
+    if (bypass === '123') {
+      return NextResponse.next();
     }
   }
+
+  // admin 하위 페이지 보호
+  // if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
+  //   if (!token) {
+  //     return NextResponse.redirect(new URL('/admin/login', request.url));
+  //   }
+  // }
 
   return NextResponse.next();
 }

@@ -13,17 +13,10 @@ export default function QuestionItem({ question }: Props) {
         <h3 className={styles.question}>{question.question}</h3>
         <p className={styles.answer}>{question.answer}</p>
 
-        <div className={styles.tags}>
-          {question.tags.map((tag) => (
-            <span key={tag} className={styles.tag}>
-              {tag}
-            </span>
-          ))}
+        <div className={styles.meta}>
+          <span className={styles.category}>{question.category}</span>
+          <span className={styles.date}>{new Date(question.createdAt).toLocaleDateString()}</span>
         </div>
-
-        <p className={styles.meta}>
-          {question.category} | {new Date(question.createdAt).toLocaleDateString()}
-        </p>
       </div>
     </Link>
   );

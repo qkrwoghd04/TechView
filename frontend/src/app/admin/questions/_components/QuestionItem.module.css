@@ -2,45 +2,104 @@
   text-decoration: none;
   color: inherit;
   display: block;
+  transition: transform 0.2s ease;
+}
+
+.item:hover {
+  transform: translateY(-2px);
 }
 
 .card {
-  border: 1px solid #ddd;
-  padding: 1rem;
-  border-radius: 6px;
-  margin-bottom: 0.5rem;
-  background: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 12px 0 rgba(59, 130, 246, 0.15), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
 .question {
-  font-size: 1.1rem;
+  font-size: 18px;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 12px;
+  color: #111827;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .answer {
-  font-size: 0.9rem;
-  color: #444;
-  margin-bottom: 0.5rem;
-}
-
-.tags {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-}
-
-.tag {
-  font-size: 0.75rem;
-  background: #eee;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .meta {
-  margin-top: 0.5rem;
-  font-size: 0.75rem;
-  color: #777;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.category {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.date {
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+
+  .question {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .answer {
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+
+  .tags {
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
 }
