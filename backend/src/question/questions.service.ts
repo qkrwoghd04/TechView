@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
-import { Question, Prisma } from '@prisma/client';
+import { Question, Prisma, Category } from '@prisma/client';
 
 @Injectable()
 export class QuestionsService {
@@ -12,48 +12,21 @@ export class QuestionsService {
   }
 
   // 전체 문제 가져오기(관리자)
-  async getQuestions(
-    page: number = 1,
-    limit: number = 10,
-  ): Promise<{
-    data: Question[];
-    total: number;
-    page: number;
-    limit: number;
-  }> {
+  async getQuestions(q?: string, category?: Category, page = 1, limit = 10) {
     const skip = (page - 1) * limit;
 
-    const [data, total] = await this.prisma.$transaction([
-      this.prisma.question.findMany({
-        skip,
-        take: limit,
-        orderBy: { createdAt: 'desc' },
-      }),
-      this.prisma.question.count(),
-    ]);
+    const where: any = {};
 
-    return { data, total, page, limit };
-  }
-
-  async searchQuestions(
-    q?: string,
-    category?: string,
-    page: number = 1,
-    limit: number = 10,
-  ) {
-    const skip = (page - 1) * limit;
-
-    const where: any = {
-      OR: [
+    if (q) {
+      where.OR = [
         { question: { contains: q, mode: 'insensitive' } },
         { answer: { contains: q, mode: 'insensitive' } },
-        { category: { contains: q, mode: 'insensitive' } },
         { tags: { hasSome: [q] } },
-      ],
-    };
+      ];
+    }
 
     if (category) {
-      where.AND = { category };
+      where.category = category;
     }
 
     const [data, total] = await this.prisma.$transaction([
@@ -66,7 +39,7 @@ export class QuestionsService {
       this.prisma.question.count({ where }),
     ]);
 
-    return { data, total, page, limit, category };
+    return { data, total, page, limit, category, q };
   }
 
   // 특정 문제를 id로 조회(관리자)
