@@ -1,5 +1,7 @@
 import QuestionDetailClient from '../_components/QuestionDetailClient';
 
-export default function Page({ params }: { params: { id: string } }) {
-  return <QuestionDetailClient id={params.id} />;
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+
+  return <QuestionDetailClient id={id} />;
 }
