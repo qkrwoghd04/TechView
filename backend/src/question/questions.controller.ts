@@ -19,14 +19,14 @@ import { FilterQuestionDto } from './dto/filter-question.dto';
 export class QuestionsController {
   constructor(private readonly questionsService: QuestionsService) {}
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post()
   async create(@Body() dto: CreateQuestionDto) {
     return this.questionsService.createQuestion(dto);
   }
 
   /** ✅ 전체 문제 가져오기 (관리용) */
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   async findAll(@Query() query: FilterQuestionDto) {
     return this.questionsService.getQuestions(
@@ -38,7 +38,7 @@ export class QuestionsController {
   }
 
   /** ✅ 특정 문제 (id로 조회) */
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return this.questionsService.getQuestionById(id);
@@ -50,13 +50,13 @@ export class QuestionsController {
     return this.questionsService.getRandomQuestions(Number(count));
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   async update(@Param('id') id: string, @Body() dto: UpdateQuestionDto) {
     return this.questionsService.updateQuestion(id, dto);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   async remove(@Param('id') id: string) {
     return this.questionsService.deleteQuestion(id);
