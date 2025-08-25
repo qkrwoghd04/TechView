@@ -75,9 +75,7 @@
     flex-direction: column-reverse;
   }
 
-  .submitButton,
-  .cancelButton {
+  .submitButton {
     width: 100%;
   }
 }
-
