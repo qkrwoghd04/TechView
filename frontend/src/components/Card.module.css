@@ -1,0 +1,106 @@
+.questionCard {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 36px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  backdrop-filter: blur(8px);
+}
+
+.questionCard:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.questionNumber {
+  display: inline-block;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  color: #374151;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 24px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.5;
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+
+.answerSection {
+  margin-top: 8px;
+}
+
+.answerLabel {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+.textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 180px;
+  border: 1px solid #d1d5db;
+  border-radius: 16px;
+  padding: 18px;
+  font-size: 16px;
+  line-height: 1.6;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, #fafafa 0%, #f9fafb 100%);
+}
+
+.textarea:focus {
+  border-color: #111827;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.textarea::placeholder {
+  color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .questionCard {
+    padding: 24px 20px;
+    margin-bottom: 24px;
+  }
+
+  .question {
+    font-size: 18px;
+  }
+
+  .textarea {
+    min-height: 160px;
+    padding: 14px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .questionCard {
+    padding: 20px 16px;
+  }
+
+  .question {
+    font-size: 16px;
+  }
+}

@@ -1,9 +1,10 @@
+import InterviewClient from './_components/InterviewClient';
+
 export default async function Page({
-    searchParams,
-  }: {
-    searchParams: Promise<{ q?: string }>
-  }) {
-    const { q } = await searchParams;
-    return <div>Interview: {q}</div>;
-  }
-  
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>;
+}) {
+  const { category } = await searchParams;
+  return <InterviewClient category={category} />;
+}

@@ -26,3 +26,4 @@ node_modules/
 
 .taskmaster/
 AGENTS.md
+.cursor/rules/
