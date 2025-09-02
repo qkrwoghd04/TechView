@@ -28,11 +28,12 @@ export class InterviewService {
       5. 창의성 (Creativity)
 
       ### 출력 형식
+      반드시 입력으로 받은 questionId를 그대로 사용해야 합니다.
       JSON:
       {
         "feedback": [
           { 
-            "questionId": string,
+            "questionId": string,   // dto.answers의 questionId 그대로 반환
             "scores": { "accuracy": number, "depth": number, "relevance": number, "clarity": number, "creativity": number },
             "totalScore": number,
             "comment": string
@@ -44,9 +45,15 @@ export class InterviewService {
 
       카테고리: ${dto.category}
       답변 목록:
-      ${dto.answers.map(
-        (a, i) => `Q${i + 1}: ${a.question}\nA${i + 1}: ${a.answer}`,
-      )}
+      ${dto.answers
+        .map(
+          (a) => `
+questionId: ${a.questionId}
+question: ${a.question}
+answer: ${a.answer}
+          `,
+        )
+        .join('\n')}
     `;
 
     // 2. OpenAI 호출

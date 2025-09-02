@@ -19,6 +19,9 @@ export type ScoreBreakdown = {
 
 export type Feedback = {
   questionId: string;
+  question: string;
+  userAnswer: string;
+  modelAnswer: string | null;
   scores: ScoreBreakdown;
   totalScore: number;
   comment: string;
