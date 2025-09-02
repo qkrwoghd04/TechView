@@ -1,72 +1,74 @@
 'use client';
 
+import layout from './page.module.css';
+import SummaryCard from './_components/SummaryCard';
+import RadarPanel from './_components/RadarPanel';
+import QuestionCard from './_components/QuestionCard';
+import EmptyState from '@/components/EmptyState';
+
 import { useEffect, useState } from 'react';
-import styles from './page.module.css';
-import { InterviewResponse } from '@/types/interview';
+import type { InterviewResponse } from '@/types/interview';
+import { METRICS } from './_constants/metrics';
+import { computeAvgByMetric, toRadarData } from './_utils/utils';
 
 export default function ResultPage() {
   const [result, setResult] = useState<InterviewResponse | null>(null);
 
   useEffect(() => {
-    const stored = sessionStorage.getItem('interviewResult');
-    if (stored) {
-      try {
-        setResult(JSON.parse(stored));
-      } catch (e) {
-        console.error('결과 파싱 실패', e);
-      }
+    try {
+      const raw = sessionStorage.getItem('interviewResult');
+      if (raw) setResult(JSON.parse(raw));
+    } catch (e) {
+      console.error('결과 파싱 실패', e);
     }
   }, []);
 
-  if (!result) {
-    return <div className={styles.container}>결과 데이터를 불러올 수 없습니다.</div>;
-  }
+  const avgByMetric = computeAvgByMetric(result);
+
+  const overallRadar = avgByMetric
+    ? {
+        radar: toRadarData(METRICS, avgByMetric),
+        meters: avgByMetric,
+      }
+    : { radar: [], meters: null };
+
+  if (!result)
+    return (
+      <EmptyState
+        title="결과 데이터를 불러올 수 없습니다."
+        description="면접 결과 데이터를 불러올 수 없습니다."
+      />
+    );
 
   return (
-    <div className={styles.page}>
-      <div className={styles.container}>
-        <h1 className={styles.title}>면접 결과</h1>
-        <p className={styles.summary}>{result.summary}</p>
-
-        <div className={styles.avgScoreContainer}>
-          <div className={styles.avgScoreLabel}>평균 점수</div>
-          <div className={styles.avgScoreValue}>{result.averageScore.toFixed(1)}</div>
+    <div className={layout.page}>
+      <header className={layout.header}>
+        <div className={layout.headerInner}>
+          <h1 className={layout.title}>면접 결과</h1>
+          <div className={layout.subtle}>요약과 항목별 점수를 확인하세요.</div>
         </div>
+      </header>
 
-        <div className={styles.feedbackList}>
+      <main className={layout.container}>
+        <section className={layout.overview}>
+          <SummaryCard
+            averageScore={+result.averageScore}
+            summary={result.summary}
+            count={result.feedback.length}
+          />
+          <RadarPanel
+            title="항목별 평균"
+            radarData={overallRadar.radar}
+            meters={overallRadar.meters}
+          />
+        </section>
+
+        <section className={layout.listSection}>
           {result.feedback.map((fb) => (
-            <div key={fb.questionId} className={styles.feedbackCard}>
-              <div className={styles.cardHeader}>
-                <h3 className={styles.questionTitle}>문항 {fb.questionId}</h3>
-                <div className={styles.totalScore}>{fb.totalScore.toFixed(1)}점</div>
-              </div>
-              <p className={styles.comment}>{fb.comment}</p>
-              <div className={styles.scoreGrid}>
-                <div className={styles.scoreItem}>
-                  <div className={styles.scoreLabel}>정확성</div>
-                  <div className={styles.scoreValue}>{fb.scores.accuracy}</div>
-                </div>
-                <div className={styles.scoreItem}>
-                  <div className={styles.scoreLabel}>깊이</div>
-                  <div className={styles.scoreValue}>{fb.scores.depth}</div>
-                </div>
-                <div className={styles.scoreItem}>
-                  <div className={styles.scoreLabel}>실무 연관성</div>
-                  <div className={styles.scoreValue}>{fb.scores.relevance}</div>
-                </div>
-                <div className={styles.scoreItem}>
-                  <div className={styles.scoreLabel}>명확성</div>
-                  <div className={styles.scoreValue}>{fb.scores.clarity}</div>
-                </div>
-                <div className={styles.scoreItem}>
-                  <div className={styles.scoreLabel}>창의성</div>
-                  <div className={styles.scoreValue}>{fb.scores.creativity}</div>
-                </div>
-              </div>
-            </div>
+            <QuestionCard key={fb.questionId} fb={fb} />
           ))}
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 }

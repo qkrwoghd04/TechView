@@ -1,0 +1,37 @@
+/* MetricMeters.module.css */
+.list {
+  list-style: none;
+  margin: 8px 4px 12px;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.row {
+  display: grid;
+  grid-template-columns: 120px 1fr 48px;
+  align-items: center;
+  gap: 10px;
+}
+.name {
+  color: var(--muted);
+  font-size: 13px;
+}
+.meter {
+  height: 8px;
+  background: #f4f5f7;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.fill {
+  display: block;
+  height: 100%;
+  background: var(--ink);
+  opacity: 0.7;
+}
+.value {
+  text-align: right;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 13px;
+}
