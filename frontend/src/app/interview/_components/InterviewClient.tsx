@@ -12,12 +12,14 @@ import Button from '@/components/Button';
 import { MdNavigateNext } from 'react-icons/md';
 import { submitInterview } from '@/lib/api/interview';
 import { useRouter } from 'next/navigation';
+import OverlayLoading from '@/components/OverlayLoading';
 
 export default function InterviewClient({ category }: { category?: string }) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -61,6 +63,7 @@ export default function InterviewClient({ category }: { category?: string }) {
 
   const handleSubmit = async () => {
     if (!answers[currentIndex].trim()) return;
+    setSubmitting(true);
 
     try {
       const payload = {
@@ -82,8 +85,11 @@ export default function InterviewClient({ category }: { category?: string }) {
     } catch (e) {
       alert('제출 중 오류가 발생했습니다. 다시 시도해 주세요.');
       console.error(e);
+    } finally {
+      setSubmitting(false);
     }
   };
+
   return (
     <div className={styles.page}>
       <div className={styles.container}>
@@ -127,6 +133,7 @@ export default function InterviewClient({ category }: { category?: string }) {
           )}
         </div>
       </div>
+      <OverlayLoading show={submitting} message="지원자의 답변을 면밀히 분석하고 있습니다..." />
     </div>
   );
 }

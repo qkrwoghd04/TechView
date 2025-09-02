@@ -55,20 +55,27 @@ export function useQuestionForm(options: Options) {
   }, []);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+    e:
+      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+      | { name: string; value: string },
   ) => {
-    const { name, value } = e.target;
+    if ('target' in e) {
+      const { name, value } = e.target;
 
-    if (name === 'tags') {
-      setTagsInput(value); // 입력창에는 문자열 그대로
-      setForm({
-        ...form,
-        tags: value
-          .split(',')
-          .map((t) => t.trim())
-          .filter(Boolean),
-      }); // form은 배열로 유지
+      if (name === 'tags') {
+        setTagsInput(value);
+        setForm({
+          ...form,
+          tags: value
+            .split(',')
+            .map((t) => t.trim())
+            .filter(Boolean),
+        });
+      } else {
+        setForm({ ...form, [name]: value });
+      }
     } else {
+      const { name, value } = e;
       setForm({ ...form, [name]: value });
     }
   };

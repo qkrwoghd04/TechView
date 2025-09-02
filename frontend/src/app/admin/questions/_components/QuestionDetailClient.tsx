@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { getQuestionById } from '@/lib/api/questions';
 import styles from './QuestionDetailClient.module.css';
+import LoadingState from '@/components/LoadingState';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function QuestionDetailClient({ id }: { id: string }) {
   const [question, setQuestion] = useState<any>(null);
@@ -18,7 +21,7 @@ export default function QuestionDetailClient({ id }: { id: string }) {
   }, [id]);
 
   if (loading) {
-    return <div className={styles.container}>로딩 중...</div>;
+    return <LoadingState title="질문을 불럿오는 중..." description="잠시만 기다려 주세요" />;
   }
 
   if (error || !question) {
@@ -82,7 +85,9 @@ export default function QuestionDetailClient({ id }: { id: string }) {
         <div className={styles.content}>
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>모범 답안</h2>
-            <div className={styles.answerContent}>{question.answer}</div>
+            <div className={styles.answerContent}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{question.answer}</ReactMarkdown>
+            </div>
           </div>
 
           <div className={styles.section}>

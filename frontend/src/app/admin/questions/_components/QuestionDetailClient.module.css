@@ -163,14 +163,27 @@
 }
 
 .answerContent {
-  background: #f8fafc;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 20px;
   font-size: 15px;
   line-height: 1.7;
-  color: #374151;
-  white-space: pre-wrap;
+  color: var(--text);
+}
+
+.answerContent p {
+  margin-bottom: 12px;
+}
+
+.answerContent code {
+  background: #f4f4f5;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.answerContent pre code {
+  display: block;
+  padding: 12px;
+  overflow-x: auto;
 }
 
 .tags {

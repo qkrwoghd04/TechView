@@ -43,11 +43,37 @@
   gap: 16px;
   padding-top: 14px;
 }
-.commentBox {
+.box {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
+
+.modelAnswer {
+  line-height: 1.7;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.modelAnswer h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 16px 0 8px;
+}
+
+.modelAnswer ul {
+  margin: 8px 0 8px 20px;
+  list-style: disc;
+}
+
+.modelAnswer code {
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 14px;
+}
+
 .comment {
   background: #fafafa;
   border: 1px solid var(--border);

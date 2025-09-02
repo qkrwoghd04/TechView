@@ -7,6 +7,7 @@ import FormField from '../../_components/FormField';
 import FormMessage from '../../_components/FormMessage';
 import FormButtons from '../../_components/FormButtons';
 import { useQuestionForm } from '../../_hooks/useQuestionForm';
+import MarkdownEditorField from '../../_components/MarkdownEditorField';
 
 export default function EditQuestionPage() {
   const router = useRouter();
@@ -62,13 +63,21 @@ export default function EditQuestionPage() {
           onChange={handleChange}
         />
 
-        <FormField
+        {/* <FormField
           type="textarea"
           name="answer"
           label="모범 답안"
           required
           value={form.answer || ''}
           onChange={handleChange}
+        /> */}
+        <MarkdownEditorField
+          name="answer"
+          label="모범 답안"
+          required
+          value={form.answer || ''}
+          onChange={handleChange}
+          helpText="Markdown 형식으로 모범 답안을 입력하세요"
         />
 
         <FormField

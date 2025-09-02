@@ -8,6 +8,7 @@ import FormField from '../_components/FormField';
 import FormMessage from '../_components/FormMessage';
 import FormButtons from '../_components/FormButtons';
 import { useQuestionForm } from '../_hooks/useQuestionForm';
+import MarkdownEditorField from '../_components/MarkdownEditorField';
 
 export default function NewQuestionPage() {
   const router = useRouter();
@@ -64,7 +65,7 @@ export default function NewQuestionPage() {
           helpText="명확하고 구체적인 질문을 작성하세요"
         />
 
-        <FormField
+        {/* <FormField
           type="textarea"
           name="answer"
           label="모범 답안"
@@ -74,6 +75,15 @@ export default function NewQuestionPage() {
           placeholder="상세한 모범 답안을 입력하세요"
           helpText="포괄적이고 정확한 답안을 제공하세요"
           style={{ minHeight: '150px' }}
+        /> */}
+
+        <MarkdownEditorField
+          name="answer"
+          label="모범 답안"
+          required
+          value={form.answer}
+          onChange={handleChange}
+          helpText="Markdown 형식으로 모범 답안을 입력하세요"
         />
 
         <FormField
