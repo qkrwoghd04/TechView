@@ -103,3 +103,98 @@
   font-weight: 700;
   color: rgb(34, 34, 34);
 }
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .card {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  .header {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .title {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .badge {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+
+  .body {
+    gap: 10px;
+  }
+
+  .userAnswer,
+  .comment {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .modelAnswer {
+    font-size: 14px;
+  }
+
+  .modelAnswer h2 {
+    font-size: 15px;
+    margin: 12px 0 6px;
+  }
+
+  .modelAnswer pre {
+    font-size: 13px;
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .title {
+    font-size: 15px;
+  }
+
+  .badge {
+    align-self: flex-end;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .body {
+    gap: 8px;
+  }
+
+  .userAnswer,
+  .comment {
+    font-size: 13px;
+  }
+
+  .modelAnswer {
+    font-size: 13px;
+  }
+
+  .modelAnswer h2 {
+    font-size: 14px;
+    margin: 10px 0 5px;
+  }
+
+  .modelAnswer pre {
+    font-size: 12px;
+    margin: 8px 0;
+    padding: 12px;
+  }
+}

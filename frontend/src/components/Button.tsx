@@ -1,4 +1,8 @@
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import styles from './Button.module.css';
 
 type HeroButtonProps = {
@@ -17,11 +21,34 @@ type ButtonProps = {
 };
 
 export function HeroButton({ href, icon, label, ...props }: HeroButtonProps) {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const handleClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    router.push(href);
+  };
+
   return (
-    <Link href={href} className={styles.button} {...props}>
-      {icon}
-      {label}
-    </Link>
+    <button
+      onClick={handleClick}
+      className={`${styles.button} ${loading ? styles.loading : ''}`}
+      disabled={loading}
+      {...props}
+    >
+      {loading ? (
+        <>
+          <span className={styles.spinner} />
+          로딩 중...
+        </>
+      ) : (
+        <>
+          {icon}
+          {label}
+        </>
+      )}
+    </button>
   );
 }
 

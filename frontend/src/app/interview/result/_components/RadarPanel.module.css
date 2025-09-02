@@ -16,3 +16,26 @@
   padding: 0;
   background: transparent;
 }
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .panel {
+    padding: 20px 16px;
+  }
+
+  .title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .panel {
+    padding: 16px 12px;
+  }
+
+  .title {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+}

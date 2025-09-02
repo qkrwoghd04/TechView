@@ -23,14 +23,38 @@
   justify-content: center;
 }
 
-.button:hover {
+.button:hover:not(.loading) {
   background: #374151;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.button:active {
+.button:active:not(.loading) {
   transform: translateY(0);
+}
+
+.button.loading {
+  background: #6b7280;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Action Button Styles */

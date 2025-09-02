@@ -34,3 +34,38 @@
 .model .icon {
   color: #8b5cf6;
 }
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .header {
+    padding: 8px 12px;
+  }
+
+  .title {
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .content {
+    padding: 8px 12px 12px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 6px 10px;
+  }
+
+  .title {
+    font-size: 12px;
+    gap: 5px;
+  }
+
+  .content {
+    padding: 6px 10px 10px 6px;
+  }
+
+  .icon {
+    font-size: 14px;
+  }
+}

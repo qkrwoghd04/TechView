@@ -36,9 +36,7 @@ export default function InterviewClient({ category }: { category?: string }) {
   }, []);
 
   if (loading) {
-    return (
-      <LoadingState title="면접 질문을 준비하고 있습니다..." description="잠시만 기다려 주세요" />
-    );
+    return <OverlayLoading show={loading} message="면접 질문을 준비하고 있습니다..." />;
   }
 
   if (!questions.length) {
@@ -80,14 +78,14 @@ export default function InterviewClient({ category }: { category?: string }) {
       // ✅ 결과를 sessionStorage에 저장
       sessionStorage.setItem('interviewResult', JSON.stringify(result));
 
-      // 결과 페이지로 이동
+      // 오버레이를 유지한 채로 페이지 이동
       router.push('/interview/result');
     } catch (e) {
       alert('제출 중 오류가 발생했습니다. 다시 시도해 주세요.');
       console.error(e);
-    } finally {
-      setSubmitting(false);
+      setSubmitting(false); // 에러 시에만 오버레이 제거
     }
+    // 성공 시에는 setSubmitting(false)를 호출하지 않아 오버레이가 유지됨
   };
 
   return (
