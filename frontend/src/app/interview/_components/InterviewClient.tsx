@@ -10,12 +10,15 @@ import ProgressBar from './ProgressBar';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
 import { MdNavigateNext } from 'react-icons/md';
+import { submitInterview } from '@/lib/api/interview';
+import { useRouter } from 'next/navigation';
 
 export default function InterviewClient({ category }: { category?: string }) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchQuestions() {
@@ -56,11 +59,31 @@ export default function InterviewClient({ category }: { category?: string }) {
     setCurrentIndex((prev) => prev + 1);
   };
 
-  const handleSubmit = () => {
-    console.log('제출 완료:', { category, questions, answers });
-    alert('면접이 완료되었습니다! 결과를 검토하여 피드백을 제공해드리겠습니다.');
-  };
+  const handleSubmit = async () => {
+    if (!answers[currentIndex].trim()) return;
 
+    try {
+      const payload = {
+        category: (category || 'FRONTEND') as 'FRONTEND' | 'BACKEND',
+        answers: questions.map((q, i) => ({
+          questionId: q.id,
+          question: q.question,
+          answer: answers[i],
+        })),
+      };
+
+      const result = await submitInterview(payload);
+
+      // ✅ 결과를 sessionStorage에 저장
+      sessionStorage.setItem('interviewResult', JSON.stringify(result));
+
+      // 결과 페이지로 이동
+      router.push('/interview/result');
+    } catch (e) {
+      alert('제출 중 오류가 발생했습니다. 다시 시도해 주세요.');
+      console.error(e);
+    }
+  };
   return (
     <div className={styles.page}>
       <div className={styles.container}>
