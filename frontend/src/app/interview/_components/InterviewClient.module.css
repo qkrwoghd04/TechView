@@ -3,103 +3,42 @@
   background: linear-gradient(135deg, #fafbfc 0%, #f8fafc 100%);
   display: flex;
   flex-direction: column;
-}
-
-.header {
-  background: white;
-  border-bottom: 1px solid #e5e7eb;
-  padding: 20px 0;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.headerContent {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logoText {
-  font-size: 20px;
-  font-weight: 700;
-  color: #111827;
-  margin: 0;
-}
-
-.backButton {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  color: #6b7280;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.backButton:hover {
-  border-color: #d1d5db;
-  color: #374151;
-}
-
-.backIcon {
-  width: 16px;
-  height: 16px;
 }
 
 .container {
-  flex: 1;
-  max-width: 900px;
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 32px 24px;
   display: flex;
   flex-direction: column;
+  gap: 32px;
 }
 
 .interviewHeader {
   text-align: center;
-  margin-bottom: 48px;
-  padding: 0 16px;
 }
 
 .title {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
   color: #111827;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #111827 0%, #374151 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
   font-size: 16px;
   color: #6b7280;
-  margin-bottom: 24px;
+  margin: 0;
 }
 
 .actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 16px;
-  margin-top: 40px;
-  padding: 0 16px;
 }
 
 .buttonIcon {
@@ -108,16 +47,13 @@
 }
 
 @media (max-width: 768px) {
-  .headerContent {
-    padding: 0 16px;
-  }
-
   .container {
     padding: 24px 16px;
+    gap: 24px;
   }
 
   .title {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .subtitle {
@@ -125,7 +61,7 @@
   }
 
   .actions {
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: 12px;
   }
 }
@@ -136,6 +72,6 @@
   }
 
   .title {
-    font-size: 24px;
+    font-size: 22px;
   }
 }

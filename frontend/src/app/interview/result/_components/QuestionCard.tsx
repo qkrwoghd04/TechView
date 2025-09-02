@@ -16,7 +16,7 @@ export default function QuestionCard({ fb }: Props) {
   return (
     <article className={styles.card}>
       <header className={styles.header}>
-        <h3 className={styles.title}>&#91; {fb.question} &#93;</h3>
+        <h3 className={styles.title}>{fb.question}</h3>
         <div className={styles.badge}>{fb.totalScore.toFixed(1)}점</div>
       </header>
 

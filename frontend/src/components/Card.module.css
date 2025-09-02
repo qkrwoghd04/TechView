@@ -1,19 +1,13 @@
 .questionCard {
   background: white;
   border: 1px solid #e5e7eb;
-  border-radius: 20px;
-  padding: 36px;
-  margin-bottom: 32px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  backdrop-filter: blur(8px);
-}
-
-.questionCard:hover {
-  border-color: #d1d5db;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
 }
 
 .questionNumber {
@@ -31,16 +25,23 @@
 }
 
 .question {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: #111827;
   line-height: 1.5;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   letter-spacing: -0.01em;
+  flex-shrink: 0;
+  min-height: 60px;
+  display: flex;
+  align-items: flex-start;
 }
 
 .answerSection {
   margin-top: 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .answerLabel {
@@ -54,24 +55,23 @@
 .textarea {
   width: 100%;
   box-sizing: border-box;
-  min-height: 180px;
+  height: 240px;
   border: 1px solid #d1d5db;
-  border-radius: 16px;
-  padding: 18px;
-  font-size: 16px;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 15px;
   line-height: 1.6;
   font-family: inherit;
-  resize: vertical;
+  resize: none;
   outline: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  background: linear-gradient(135deg, #fafafa 0%, #f9fafb 100%);
+  transition: border-color 0.2s ease;
+  background: #fafafa;
+  flex: 1;
 }
 
 .textarea:focus {
   border-color: #111827;
   background: white;
-  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.1), 0 2px 8px rgba(0, 0, 0, 0.1);
-  transform: translateY(-1px);
 }
 
 .textarea::placeholder {
@@ -81,26 +81,33 @@
 @media (max-width: 768px) {
   .questionCard {
     padding: 24px 20px;
-    margin-bottom: 24px;
+    min-height: 420px;
   }
 
   .question {
-    font-size: 18px;
+    font-size: 16px;
+    min-height: 50px;
   }
 
   .textarea {
-    min-height: 160px;
+    height: 200px;
     padding: 14px;
-    font-size: 15px;
+    font-size: 14px;
   }
 }
 
 @media (max-width: 480px) {
   .questionCard {
     padding: 20px 16px;
+    min-height: 380px;
   }
 
   .question {
-    font-size: 16px;
+    font-size: 15px;
+    min-height: 45px;
+  }
+
+  .textarea {
+    height: 180px;
   }
 }

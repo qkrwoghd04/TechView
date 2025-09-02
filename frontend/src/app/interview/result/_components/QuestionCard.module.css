@@ -1,6 +1,5 @@
 /* QuestionCard.module.css */
 .card {
-  border-bottom: 1px solid var(--border);
   padding-bottom: 24px;
   margin-bottom: 24px;
 }
@@ -12,10 +11,13 @@
 
 .header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
+  padding: 10px 0;
   margin-bottom: 20px;
+  border-top: 2px solid #e5e7eb;
+  border-bottom: 2px solid #e5e7eb;
 }
 .title {
   font-size: 18px;

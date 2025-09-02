@@ -67,7 +67,6 @@ export default function ResultPage() {
           </section>
 
           <section className={layout.listSection}>
-            <h2 className={layout.listHeader}>개별 문항 상세 분석</h2>
             {result.feedback.map((fb) => (
               <QuestionCard key={fb.questionId} fb={fb} />
             ))}
