@@ -42,33 +42,38 @@ export default function ResultPage() {
 
   return (
     <div className={layout.page}>
-      <header className={layout.header}>
-        <div className={layout.headerInner}>
-          <h1 className={layout.title}>면접 결과</h1>
-          <div className={layout.subtle}>요약과 항목별 점수를 확인하세요.</div>
-        </div>
-      </header>
+      <div className={layout.reportWrapper}>
+        <header className={layout.header}>
+          <div className={layout.headerInner}>
+            <div>
+              <h1 className={layout.title}>면접 결과 보고서</h1>
+              <div className={layout.subtle}>AI가 분석한 심층 리포트입니다.</div>
+            </div>
+          </div>
+        </header>
 
-      <main className={layout.container}>
-        <section className={layout.overview}>
-          <SummaryCard
-            averageScore={+result.averageScore}
-            summary={result.summary}
-            count={result.feedback.length}
-          />
-          <RadarPanel
-            title="항목별 평균"
-            radarData={overallRadar.radar}
-            meters={overallRadar.meters}
-          />
-        </section>
+        <main className={layout.container}>
+          <section className={layout.overview}>
+            <SummaryCard
+              averageScore={+result.averageScore}
+              summary={result.summary}
+              count={result.feedback.length}
+            />
+            <RadarPanel
+              title="역량별 점수 분석"
+              radarData={overallRadar.radar}
+              meters={overallRadar.meters}
+            />
+          </section>
 
-        <section className={layout.listSection}>
-          {result.feedback.map((fb) => (
-            <QuestionCard key={fb.questionId} fb={fb} />
-          ))}
-        </section>
-      </main>
+          <section className={layout.listSection}>
+            <h2 className={layout.listHeader}>개별 문항 상세 분석</h2>
+            {result.feedback.map((fb) => (
+              <QuestionCard key={fb.questionId} fb={fb} />
+            ))}
+          </section>
+        </main>
+      </div>
     </div>
   );
 }

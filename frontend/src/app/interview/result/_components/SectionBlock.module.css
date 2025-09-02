@@ -1,0 +1,36 @@
+/* SectionBlock.module.css */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+.title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.icon {
+  display: inline-flex;
+  color: var(--muted);
+}
+.content {
+  padding: 10px 14px 14px 10px;
+}
+.chevron {
+  color: var(--muted);
+  transition: transform 0.2s ease;
+}
+
+/* Variants */
+
+.comment .icon {
+  color: #3b82f6;
+}
+
+.model .icon {
+  color: #8b5cf6;
+}

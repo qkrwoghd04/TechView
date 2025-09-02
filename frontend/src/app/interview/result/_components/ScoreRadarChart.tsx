@@ -25,7 +25,7 @@ export function ScoreRadarChart({ data, height = 240, ariaLabel, domain = SCORE_
           <PolarGrid gridType="polygon" stroke="var(--border)" radialLines />
           <PolarAngleAxis
             dataKey="subject"
-            tick={{ fontSize: 12, fill: 'black', fontWeight: '900' }}
+            tick={{ fontSize: 12, fill: 'var(--ink)', fontWeight: 600 }}
             tickLine={false}
           />
           <PolarRadiusAxis
@@ -37,11 +37,12 @@ export function ScoreRadarChart({ data, height = 240, ariaLabel, domain = SCORE_
           />
           <Tooltip
             contentStyle={{
-              borderRadius: 8,
+              borderRadius: '12px',
               border: '1px solid var(--border)',
               background: 'var(--tooltip-bg)',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
             }}
-            labelStyle={{ color: 'var(--text)' }}
+            labelStyle={{ color: 'var(--text)', fontWeight: 'bold' }}
             itemStyle={{ color: 'var(--text)' }}
           />
           <Radar
