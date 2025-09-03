@@ -78,6 +78,7 @@ export class QuestionsService {
     const questions: Question[] = [];
     for (const skip of skipIndexes) {
       const q = await this.prisma.question.findFirst({
+        where: category ? { category } : {},
         skip,
         take: 1,
       });
