@@ -21,7 +21,7 @@ export async function getQuestionById(id: string) {
 }
 
 // 랜덤 N개 문제 가져오기
-export async function getRandomQuestions(count: number, category?: string) {
+export async function getRandomQuestions(count: number, category: string) {
   const res = await api.get(`/questions/random/${count}`, {
     params: { category },
   });

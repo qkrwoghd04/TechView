@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import type { UpdateQuestionDto, CreateQuestionDto } from '@/types/questions';
+import { Category } from '@/types/questions';
 
 type EditOptions = {
   id: string;
@@ -19,7 +20,7 @@ type Options = EditOptions | NewOptions;
 
 export function useQuestionForm(options: Options) {
   const [form, setForm] = useState<CreateQuestionDto>({
-    category: '',
+    category: Category.FRONTEND,
     question: '',
     answer: '',
     tags: [],
@@ -38,7 +39,7 @@ export function useQuestionForm(options: Options) {
         try {
           const data = await options.fetcher(options.id);
           setForm({
-            category: data.category ?? '',
+            category: data.category ?? Category.FRONTEND,
             question: data.question ?? '',
             answer: data.answer ?? '',
             tags: data.tags ?? [],

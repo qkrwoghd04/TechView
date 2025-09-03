@@ -1,5 +1,5 @@
 export interface CreateQuestionDto {
-  category: string;
+  category: Category;
   question: string;
   answer: string;
   tags?: string[];
@@ -16,10 +16,13 @@ export type Question = {
   id: string;
   createdAt: string;
   updatedAt: string;
-  category: string;
+  category: Category;
   question: string;
   answer: string;
   tags: string[];
 };
 
-export type Category = 'FRONTEND' | 'BACKEND';
+export enum Category {
+  FRONTEND = 'FRONTEND',
+  BACKEND = 'BACKEND',
+}
