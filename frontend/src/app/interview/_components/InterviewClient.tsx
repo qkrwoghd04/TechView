@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { getRandomQuestions } from '@/lib/api/questions';
 import styles from './InterviewClient.module.css';
 import { Question } from '@/types/questions';
-import LoadingState from '@/components/LoadingState';
 import EmptyState from '@/components/EmptyState';
 import ProgressBar from './ProgressBar';
 import Card from '@/components/Card';
@@ -13,6 +12,7 @@ import { MdNavigateNext } from 'react-icons/md';
 import { submitInterview } from '@/lib/api/interview';
 import { useRouter } from 'next/navigation';
 import OverlayLoading from '@/components/OverlayLoading';
+import { Category } from '@/types/questions';
 
 export default function InterviewClient({ category }: { category?: string }) {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -25,7 +25,7 @@ export default function InterviewClient({ category }: { category?: string }) {
   useEffect(() => {
     async function fetchQuestions() {
       try {
-        const data = await getRandomQuestions(5, category);
+        const data = await getRandomQuestions(5, category as Category);
         setQuestions(data);
         setAnswers(Array(data.length).fill(''));
       } finally {

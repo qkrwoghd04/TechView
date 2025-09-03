@@ -6,7 +6,7 @@ export interface CreateQuestionDto {
 }
 
 export interface UpdateQuestionDto {
-  category?: string;
+  category?: Category;
   question?: string;
   answer?: string;
   tags?: string[];
@@ -21,3 +21,5 @@ export type Question = {
   answer: string;
   tags: string[];
 };
+
+export type Category = 'FRONTEND' | 'BACKEND';
