@@ -25,7 +25,7 @@ export default function InterviewClient({ category }: { category?: string }) {
   useEffect(() => {
     async function fetchQuestions() {
       try {
-        const data = await getRandomQuestions(5);
+        const data = await getRandomQuestions(5, category);
         setQuestions(data);
         setAnswers(Array(data.length).fill(''));
       } finally {
