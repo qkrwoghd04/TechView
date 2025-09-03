@@ -61,8 +61,13 @@ export class QuestionsService {
   }
 
   // 랜덤 N개의 문제 가져오기(사용자)
-  async getRandomQuestions(count: number): Promise<Question[]> {
-    const total = await this.prisma.question.count();
+  async getRandomQuestions(
+    count: number,
+    category?: Category,
+  ): Promise<Question[]> {
+    const total = await this.prisma.question.count({
+      where: category ? { category } : {},
+    });
     const skipIndexes = new Set<number>();
 
     // 무작위 index 추출
