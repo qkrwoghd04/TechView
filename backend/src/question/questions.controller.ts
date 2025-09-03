@@ -14,6 +14,7 @@ import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { FilterQuestionDto } from './dto/filter-question.dto';
+import { Category } from '@prisma/client';
 
 @Controller('questions')
 export class QuestionsController {
@@ -46,8 +47,14 @@ export class QuestionsController {
 
   /** ✅ 랜덤 N개 문제 (예: 5개) */
   @Get('random/:count')
-  async getRandom(@Param('count') count: string) {
-    return this.questionsService.getRandomQuestions(Number(count));
+  async getRandom(
+    @Param('count') count: string,
+    @Query('category') category?: string,
+  ) {
+    return this.questionsService.getRandomQuestions(
+      Number(count),
+      category as Category,
+    );
   }
 
   @UseGuards(JwtAuthGuard)
